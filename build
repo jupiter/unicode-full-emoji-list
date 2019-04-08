@@ -1,0 +1,12 @@
+#!/bin/bash
+if [ -d "./dist" ]; then
+    echo "Build exists, skipping."
+    exit 0
+fi
+
+npm run extract
+mkdir -p ./dist
+mkdir -p ./opt/nodejs/node_modules/unicode-full-emoji-list
+cp -R package.json index.js resources ./opt/nodejs/node_modules/unicode-full-emoji-list
+cd ./opt
+zip -r ../dist/layer.zip .

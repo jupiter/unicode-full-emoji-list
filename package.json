@@ -1,0 +1,42 @@
+{
+  "name": "unicode-full-emoji-list",
+  "version": "1.0.0",
+  "description": "The Unicode.org full emoji list",
+  "main": "index.js",
+  "scripts": {
+    "lint": "standard",
+    "lint:fix": "standard --fix",
+    "copy": "mkdir -p ./temp && curl https://unicode.org/emoji/charts/full-emoji-list.html > temp/full-emoji-list.html && curl https://unicode.org/emoji/charts/full-emoji-modifiers.html > temp/full-emoji-modifiers.html",
+    "extract": "mkdir -p ./resources && cat temp/full-emoji-list.html temp/full-emoji-modifiers.html | node scripts/extract.js resources",
+    "extract:watch": "nodemon --ignore resources --exec npm run extract",
+    "rebuild": "rm -rf ./resources ./dist && npm run build",
+    "build": "./build"
+  },
+  "files": [
+    "lib",
+    "assets"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jupiter/unicode-full-emoji-list.git"
+  },
+  "keywords": [
+    "unicode",
+    "emoji",
+    "png",
+    "apple",
+    "twitter",
+    "facebook"
+  ],
+  "author": "Pieter Raubenheimer",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/jupiter/unicode-full-emoji-list/issues"
+  },
+  "homepage": "https://github.com/jupiter/unicode-full-emoji-list#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.10",
+    "split": "^1.0.1",
+    "standard": "^12.0.1"
+  }
+}
